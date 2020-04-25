@@ -1,0 +1,9 @@
+User-Agent: *
+Allow: /
+Disallow: /admin
+Disallow: /cron
+Disallow: /images
+Disallow: /js
+Disallow: /pages
+Disallow: /splash
+Disallow: /video

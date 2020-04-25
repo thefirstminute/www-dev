@@ -1,0 +1,20 @@
+#!/bin/bash
+# get which window is active right now
+MYWINDOW=$(xdotool getactivewindow)
+
+# set to whatever's given as argument
+BROWSER=$1
+
+# if was empty, default set to name of browser, firefox/chrome/opera/etc..
+if [ -z "${BROWSER}" ]; then
+    BROWSER=firefox
+fi
+
+xdotool search --onlyvisible --class "${BROWSER}" windowfocus key \
+  --window %@ 'ctrl+r' || {
+    1>&2 echo "unable to signal to \"${BROWSER}\""
+  }
+
+# sometimes the focus doesn't work, so follow up with activate
+xdotool windowfocus --sync ${MYWINDOW}
+xdotool windowactivate --sync ${MYWINDOW}
